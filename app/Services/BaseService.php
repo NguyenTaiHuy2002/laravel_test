@@ -18,13 +18,8 @@
         {
             $query = $this->model->newQuery();
     
-            // Filter tự động
             if (!empty($params['filter'])) {
-                foreach ($params['filter'] as $field => $value) {
-                    if ($value !== null) {
-                        $query->where($field, 'like', '%' . $value . '%');
-                    }
-                }
+                $query->filter($params['filter']);
             }
     
             return $query->paginate($perPage);
